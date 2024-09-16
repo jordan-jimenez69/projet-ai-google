@@ -8,11 +8,9 @@ export default function Home() {
       <Head>
         <title>Chatbot</title>
         <meta name="description" content="Chatbot application" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1>Bienvenue sur mon générateur de rando, pensez a utilisé mon chatbot</h1>
 
         <Chatbot />
 

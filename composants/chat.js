@@ -9,44 +9,40 @@ export default function Chatbot() {
 
     setMessages([...messages, { text: input, sender: 'user' }]);
 
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: input }),
-      });
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: input }),
+    });
 
-      const data = await response.json();
-      setMessages([...messages, { text: input, sender: 'user' }, { text: data.reply, sender: 'bot' }]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-    }
+    const data = await response.json();
+    setMessages([...messages, { text: input, sender: 'user' }, { text: data.reply, sender: 'bot' }]);
 
     setInput('');
   };
 
   return (
-    <div>
-      <h2>Chatbot</h2>
-      <div>
+    <div className="chatbotContainer">
+      <h2 className="header">Chatbot</h2>
+      <div className="messagesContainer">
         {messages.map((msg, index) => (
-          <div key={index}>
-            <p>
-              {msg.text}
-            </p>
+          <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
+            <p>{msg.text}</p>
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          className="input"
+          placeholder="Tapez votre message ici..."
         />
-        <button type="submit">
-          Envoyé la demande
+        <button type="submit" className="button">
+          Envoyer
         </button>
       </form>
     </div>
