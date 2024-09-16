@@ -1,6 +1,9 @@
+import Head from 'next/head';
+import ChatbotPopup from '../composants/Chatbotpop.js';
 import { useState } from 'react';
 
 export default function Home() {
+
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -14,11 +17,25 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Generation d'une rando en France</h1>
-      <button onClick={generateStory} disabled={loading}>
-        {loading ? 'Generation de la randonné...' : 'Generation Rando'}
-      </button>
-      <p>{text}</p>
+      <Head>
+        <title>Chatbot</title>
+        <meta name="description" content="Chatbot application" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>
+        <h1>Bienvenue sur mon générateur de rando, pensez a utilisé mon chatbot :)</h1>
+
+        <div>
+          <button onClick={generateStory} disabled={loading}>
+            {loading ? 'Nous recherchons une rando' : 'Rechercher une randonnée'}
+          </button>
+          <p>{text}</p>
+        </div>
+
+        <ChatbotPopup />
+
+      </main>
     </div>
   );
 }
