@@ -1,0 +1,89 @@
+{
+  "conversations": [
+    {
+      "id": 1726499140062,
+      "messages": [
+        {
+          "text": "hi",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:05:40.081Z"
+        },
+        {
+          "text": "Hi! How can I help you today? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:05:41.053Z"
+        }
+      ]
+    },
+    {
+      "id": 1726499141062,
+      "messages": [
+        {
+          "text": "ca va",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:05:45.700Z"
+        },
+        {
+          "text": "Ça va bien, merci! Et toi? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:05:46.718Z"
+        },
+        {
+          "text": "oui",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:05:49.395Z"
+        },
+        {
+          "text": "Oui, qu'est-ce que je peux faire pour vous ? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:05:49.856Z"
+        },
+        {
+          "text": "oui",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:05:53.272Z"
+        },
+        {
+          "text": "Oui à quoi ? \n\nVeuillez préciser votre demande. \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:05:53.753Z"
+        }
+      ]
+    },
+    {
+      "id": 1726499161298,
+      "messages": [
+        {
+          "text": "",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:06:01.326Z"
+        },
+        {
+          "text": "Please provide me with more context or information about what you would like me to do. I need more details to understand your request and give you a helpful response. \n\nFor example, you could tell me:\n\n* **What topic are you interested in?**  (e.g., history, science, literature, etc.)\n* **What kind of information are you looking for?** (e.g., facts, definitions, explanations, stories, etc.)\n* **Do you have a specific question?** \n* **What kind of response are you hoping for?** (e.g., a list, a paragraph, a poem, etc.)\n\nThe more information you provide, the better I can assist you. \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:06:02.660Z"
+        },
+        {
+          "text": "hello",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:06:05.406Z"
+        },
+        {
+          "text": "Hello! How can I help you today? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:06:05.830Z"
+        },
+        {
+          "text": "how are you ",
+          "sender": "user",
+          "timestamp": "2024-09-16T15:06:12.098Z"
+        },
+        {
+          "text": "As a large language model, I don't have feelings or experiences like humans do. So, I'm not \"feeling\" anything in the way you might.  \n\nHowever, I'm here and ready to assist you with any questions or tasks you have! How can I help you today? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-16T15:06:13.206Z"
+        }
+      ]
+    }
+  ]
+}

@@ -87,3 +87,28 @@ body {
 .button:hover {
   background-color: #005bb5;
 }
+
+.history {
+  margin-bottom: 1rem;
+}
+
+.history h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.history button {
+  display: block;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.history button:hover {
+  background-color: #005bb5;
+}

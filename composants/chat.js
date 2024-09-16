@@ -1,31 +1,99 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [conversationId, setConversationId] = useState(null);
+  const [conversations, setConversations] = useState([]);
+
+  useEffect(() => {
+    fetchConversations();
+  }, []);
+
+  const fetchConversations = async () => {
+      const response = await fetch('/api/chat');
+      const data = await response.json();
+      setConversations(data.conversations);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setMessages([...messages, { text: input, sender: 'user' }]);
+    const userMessage = { text: input, sender: 'user' };
+    setMessages(prevMessages => [...prevMessages, userMessage]);
 
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message: input }),
-    });
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: input, conversationId: conversationId || Date.now() }),
+      });
 
-    const data = await response.json();
-    setMessages([...messages, { text: input, sender: 'user' }, { text: data.reply, sender: 'bot' }]);
+      const data = await response.json();
+      const botMessage = { text: data.reply, sender: 'bot' };
 
-    setInput('');
+      setMessages(prevMessages => [...prevMessages, botMessage]);
+
+      if (!conversationId) {
+        setConversationId(Date.now());
+      }
+
+      setInput('');
+
+      await fetchConversations();
+
+    } catch (error) {
+      console.error('Erreur lors de la communication avec API', error);
+    }
+  };
+
+  const loadConversation = (id) => {
+    const conv = conversations.find(c => c.id === id);
+    if (conv) {
+      setMessages(conv.messages);
+      setConversationId(id);
+    }
+  };
+
+  const startNewConversation = async () => {
+    setMessages([]);
+    const newId = Date.now();
+    setConversationId(newId);
+
+    try {
+      await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: '', conversationId: newId }),
+      });
+
+      await fetchConversations();
+
+    } catch (error) {
+      console.error('Erreur lors de la création d\'une nouvelle conversation', error);
+    }
   };
 
   return (
     <div className="chatbotContainer">
       <h2 className="header">Chatbot</h2>
+
+      {/* Liste des conversations existantes */}
+      <div className="history">
+        <h3>Historique des conversations</h3>
+        {conversations.map((conv) => (
+          <button key={conv.id} onClick={() => loadConversation(conv.id)}>
+            Conversation {conv.id}
+          </button>
+        ))}
+        <button onClick={startNewConversation}>Nouvelle conversation</button>
+      </div>
+
+      {/* Affichage des messages */}
       <div className="messagesContainer">
         {messages.map((msg, index) => (
           <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
@@ -33,6 +101,8 @@ export default function Chatbot() {
           </div>
         ))}
       </div>
+
+      {/* Formulaire d'envoi */}
       <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
@@ -41,9 +111,7 @@ export default function Chatbot() {
           className="input"
           placeholder="Tapez votre message ici..."
         />
-        <button type="submit" className="button">
-          Envoyer
-        </button>
+        <button type="submit" className="button">Envoyer</button>
       </form>
     </div>
   );
