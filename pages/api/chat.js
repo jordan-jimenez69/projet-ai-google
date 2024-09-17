@@ -19,7 +19,6 @@ export default async function handler(req, res) {
       json = { conversations: [] };
     }
 
-    // Trouver la conversation avec l'ID correspondant ou en créer une nouvelle
     let conversation = json.conversations.find(c => c.id === conversationId);
 
     if (!conversation) {
@@ -27,10 +26,7 @@ export default async function handler(req, res) {
       json.conversations.push(conversation);
     }
 
-    // Ajouter le message de l'utilisateur à la conversation
     conversation.messages.push({ text: message, sender: 'user', timestamp: new Date().toISOString() });
-
-    // Enregistrer le message dans le fichier JSON
     fs.writeFileSync(filePath, JSON.stringify(json, null, 2));
   
       const result = await model.generateContent(message);
