@@ -82,7 +82,7 @@ export default function Chatbot() {
   return (
 
     <div className="chatbotContainer">
-    {/* Section Historique des conversations à gauche */}
+    {/* Section Historique*/}
     <div className="histoContainer">
       <ConversationHistory
         conversations={conversations}
@@ -92,7 +92,7 @@ export default function Chatbot() {
     </div>
      
   <div className="chatContainer">
-    {/* Affichage des messages */}
+    {/* messages */}
     <div className="messagesContainer">
       {messages.map((msg, index) => (
         <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
