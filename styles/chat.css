@@ -107,7 +107,7 @@ body {
   display: block;
   margin-bottom: 0.5rem;
   padding: 0.8rem;
-  background-color: #0070f3;
+  background-color: #ff9a9e;
   color: white;
   border: none;
   border-radius: 8px;
@@ -116,7 +116,7 @@ body {
 }
 
 .history button:hover {
-  background-color: #005bb5;
+  background-color: #fad0c4;
 }
 
 .head-histo {
@@ -133,5 +133,10 @@ body {
 
 .head-histo button {
  width: 40%;
- background-color: #8a8a8a;
+ background-color: #005bb5;
 }
+
+.head-histo button:hover {
+  width: 40%;
+  background-color: #000000;
+ }
