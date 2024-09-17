@@ -84,6 +84,46 @@
           "timestamp": "2024-09-16T15:06:13.206Z"
         }
       ]
+    },
+    {
+      "id": 1726558047353,
+      "messages": [
+        {
+          "text": "hi",
+          "sender": "user",
+          "timestamp": "2024-09-17T07:27:27.372Z"
+        },
+        {
+          "text": "Hi! How can I help you today? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-17T07:27:28.093Z"
+        }
+      ]
+    },
+    {
+      "id": 1726558048097,
+      "messages": [
+        {
+          "text": "ca va",
+          "sender": "user",
+          "timestamp": "2024-09-17T07:27:31.265Z"
+        },
+        {
+          "text": "Ça va bien, merci ! Et toi, comment vas-tu ? \n",
+          "sender": "bot",
+          "timestamp": "2024-09-17T07:27:31.804Z"
+        },
+        {
+          "text": "oui",
+          "sender": "user",
+          "timestamp": "2024-09-17T07:27:33.831Z"
+        },
+        {
+          "text": "Veuillez me fournir plus d'informations afin que je puisse vous aider. Par exemple, à quoi faites-vous référence par \"oui\" ? \n\nParlez-moi de ce que vous voulez que je fasse, et je ferai de mon mieux pour vous aider ! \n",
+          "sender": "bot",
+          "timestamp": "2024-09-17T07:27:34.511Z"
+        }
+      ]
     }
   ]
 }

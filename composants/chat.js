@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ConversationHistory from '@/composants/historique';
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
@@ -11,9 +12,9 @@ export default function Chatbot() {
   }, []);
 
   const fetchConversations = async () => {
-      const response = await fetch('/api/chat');
-      const data = await response.json();
-      setConversations(data.conversations);
+    const response = await fetch('/api/chat');
+    const data = await response.json();
+    setConversations(data.conversations);
   };
 
   const handleSubmit = async (e) => {
@@ -79,40 +80,39 @@ export default function Chatbot() {
   };
 
   return (
+
     <div className="chatbotContainer">
-      <h2 className="header">Chatbot</h2>
-
-      {/* Liste des conversations existantes */}
-      <div className="history">
-        <h3>Historique des conversations</h3>
-        {conversations.map((conv) => (
-          <button key={conv.id} onClick={() => loadConversation(conv.id)}>
-            Conversation {conv.id}
-          </button>
-        ))}
-        <button onClick={startNewConversation}>Nouvelle conversation</button>
-      </div>
-
-      {/* Affichage des messages */}
-      <div className="messagesContainer">
-        {messages.map((msg, index) => (
-          <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
-            <p>{msg.text}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Formulaire d'envoi */}
-      <form onSubmit={handleSubmit} className="form">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="input"
-          placeholder="Tapez votre message ici..."
-        />
-        <button type="submit" className="button">Envoyer</button>
-      </form>
+    {/* Section Historique des conversations à gauche */}
+    <div className="histoContainer">
+      <ConversationHistory
+        conversations={conversations}
+        loadConversation={loadConversation}
+        startNewConversation={startNewConversation}
+      />
     </div>
+     
+  <div className="chatContainer">
+    {/* Affichage des messages */}
+    <div className="messagesContainer">
+      {messages.map((msg, index) => (
+        <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
+          <p>{msg.text}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Formulaire d'envoi */}
+    <form onSubmit={handleSubmit} className="form">
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="input"
+        placeholder="Tapez votre message ici..."
+      />
+      <button type="submit" className="button">Envoyer</button>
+    </form>
+  </div>
+    </div >
   );
 }
