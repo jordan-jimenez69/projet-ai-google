@@ -35,3 +35,14 @@ const result = await model.generateContent({
 
 mais malheuresement ca comprend des defaults car on ne pourra pas donner de réponse claire comme le temps de livraison ect.
 
+J'ai trouver une solution pour toute des question spécifique : 
+
+  const handleShoePriceQuestion = (message) => {
+    const shoeKeywords = ["chaussure", "chaussures", "rando", "randonnée", "prix"];
+    if (shoeKeywords.some(keyword => message.toLowerCase().includes(keyword))) {
+      return "Je ne peux pas donner les prix exacts de nos chaussures, mais elles se situent généralement entre 20 et 200 euros. Consultez notre site web pour connaître les prix actuels.";
+    }
+    return null; 
+  };
+
+  par exemple le fait de si on veut avoir des informations sur notre site en particulier le bot chat vas donner une reponse par rapport au mot clé noté.
