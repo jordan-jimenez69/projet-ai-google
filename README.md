@@ -19,6 +19,10 @@ Output : Ce chatbot est très performant pour répondre aux questions sur les é
 
 Il comprend bien que l'on parle de rando mais il ecrit ce message pour toute les demande que lui fait !
 
+![alt text](image.png)
+
+Comme on peut voir sur la photo sur le test de Google IA studio tout marche comme il faut depuis la platforme mais impossible de le faire marcher dans notre code
+
 J'ai tenter une autre méthode qui est de donner une instruction a mon bot comme ceci : 
 
 const instruction = "Je suis un chatbot conçu pour vous aider à vous orienter uniquement vers les équipements de randonnée disponibles sur notre site. Nous ne vendons que des équipements de randonnée et je vous conseille sur les meilleurs équipements disponibles.";

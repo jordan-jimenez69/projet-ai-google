@@ -18,17 +18,17 @@ const model = genAI.getGenerativeModel({
   };
   
   const handleShoePriceQuestion = (message) => {
-    const shoeKeywords = ["chaussure", "chaussures", "rando", "randonnée", "prix"];
+    const shoeKeywords = ["chaussure", "chaussures"];
     if (shoeKeywords.some(keyword => message.toLowerCase().includes(keyword))) {
-      return "Je ne peux pas donner les prix exacts de nos chaussures, mais elles se situent généralement entre 20 et 200 euros. Consultez notre site web pour connaître les prix actuels.";
+      return "Nos chaussures se situent généralement entre 20 et 200 euros. Consulter ici notre catalogue des chaussures";
     }
     return null; 
   };
 
   const handleTshirtPriceQuestion = (message) => {
-    const shoeKeywords = ["t-shirt", "t shirt", "rando", "randonnée", "prix"];
+    const shoeKeywords = ["t-shirt", "t shirt"];
     if (shoeKeywords.some(keyword => message.toLowerCase().includes(keyword))) {
-        return "Je ne peux pas donner les prix exacts de nos t-shirts, mais ils se situent généralement entre 10 et 30 euros. Consultez notre site web pour connaître les prix actuels.";
+        return "Nos t-shirts se situent généralement entre 10 et 30 euros. Consulter ici notre catalogue des t-shirts";
     }
     return null;
 };
