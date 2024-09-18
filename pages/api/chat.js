@@ -10,44 +10,68 @@ const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
 });
 
-const generationConfig = {
-  temperature: 0.7,
-  topP: 0.95,
-  topK: 64,
-  responseMimeType: "text/plain",
+  const generationConfig = {
+    temperature: 0.7,
+    topP: 0.95,
+    topK: 64, 
+    responseMimeType: "text/plain",
+  };
+  
+  const handleShoePriceQuestion = (message) => {
+    const shoeKeywords = ["chaussure", "chaussures", "rando", "randonnée", "prix"];
+    if (shoeKeywords.some(keyword => message.toLowerCase().includes(keyword))) {
+      return "Je ne peux pas donner les prix exacts de nos chaussures, mais elles se situent généralement entre 20 et 200 euros. Consultez notre site web pour connaître les prix actuels.";
+    }
+    return null; 
+  };
+
+  const handleTshirtPriceQuestion = (message) => {
+    const shoeKeywords = ["t-shirt", "t shirt", "rando", "randonnée", "prix"];
+    if (shoeKeywords.some(keyword => message.toLowerCase().includes(keyword))) {
+        return "Je ne peux pas donner les prix exacts de nos t-shirts, mais ils se situent généralement entre 10 et 30 euros. Consultez notre site web pour connaître les prix actuels.";
+    }
+    return null;
 };
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { message, conversationId } = req.body;
+  export default async function handler(req, res) {
+    if (req.method === 'POST') {
+      const { message, conversationId } = req.body;
+  
+      let json;
+      try {
+        const fileData = fs.readFileSync(filePath);
+        json = JSON.parse(fileData);
+      } catch (error) {
+        json = { conversations: [] };
+      }
+  
+      let conversation = json.conversations.find(c => c.id === conversationId);
+      if (!conversation) {
+        conversation = { id: conversationId, messages: [] };
+        json.conversations.push(conversation);
+      }
+  
+      conversation.messages.push({ text: message, sender: 'user', timestamp: new Date().toISOString() });
+      fs.writeFileSync(filePath, JSON.stringify(json, null, 2));
+  
+      const specificResponse = handleShoePriceQuestion(message) || handleTshirtPriceQuestion(message);
 
-    let json;
-    try {
-      const fileData = fs.readFileSync(filePath);
-      json = JSON.parse(fileData);
-    } catch (error) {
-      json = { conversations: [] };
-    }
-
-    let conversation = json.conversations.find(c => c.id === conversationId);
-
-    if (!conversation) {
-      conversation = { id: conversationId, messages: [] };
-      json.conversations.push(conversation);
-    }
-
-    conversation.messages.push({ text: message, sender: 'user', timestamp: new Date().toISOString() });
-    fs.writeFileSync(filePath, JSON.stringify(json, null, 2));
-
-    const parts = [
-      { text: `instruction: Tu es un expert en randonnée. tu dois donner une rando avec les informations que tu aura. tout ce qui est en dehors de la randonné tu ne peux pas en parler` },
-      { text: `input: ${message}` },
-    ];
-
-    const result = await model.generateContent({
-      contents: [{ role: 'user', parts }],
-      generationConfig,
-    });
+      if (specificResponse) {
+        conversation.messages.push({ text: specificResponse, sender: 'bot', timestamp: new Date().toISOString() });
+        fs.writeFileSync(filePath, JSON.stringify(json, null, 2));
+        res.status(200).json({ reply: specificResponse });
+        return;
+      }
+  
+      const parts = [
+        { text: `instruction: Tu es un expert en randonnée. tu dois donner une rando avec les informations que tu aura. tout ce qui est en dehors de la randonné tu ne peux pas en parler` },
+        { text: `input: ${message}` },
+      ];
+  
+      const result = await model.generateContent({
+        contents: [{ role: 'user', parts }],
+        generationConfig,
+      });
 
     const reponseTexte = await result.response.text();
 
