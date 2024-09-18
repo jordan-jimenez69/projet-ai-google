@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConversationHistory from '@/composants/historique';
+import ReactMarkdown from 'react-markdown';
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
@@ -46,7 +47,7 @@ export default function Chatbot() {
       await fetchConversations();
 
     } catch (error) {
-      console.error('Erreur lors de la communication avec API', error);
+      console.error('Erreur lors de la communication avec l\'API', error);
     }
   };
 
@@ -80,39 +81,39 @@ export default function Chatbot() {
   };
 
   return (
-
     <div className="chatbotContainer">
-    {/* Section Historique*/}
-    <div className="histoContainer">
-      <ConversationHistory
-        conversations={conversations}
-        loadConversation={loadConversation}
-        startNewConversation={startNewConversation}
-      />
-    </div>
-     
-  <div className="chatContainer">
-    {/* messages */}
-    <div className="messagesContainer">
-      {messages.map((msg, index) => (
-        <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
-          <p>{msg.text}</p>
+      {/* Section Historique */}
+      <div className="histoContainer">
+        <ConversationHistory
+          conversations={conversations}
+          loadConversation={loadConversation}
+          startNewConversation={startNewConversation}
+        />
+      </div>
+      
+      <div className="chatContainer">
+        {/* messages */}
+        <div className="messagesContainer">
+          {messages.map((msg, index) => (
+            <div key={index} className={msg.sender === 'user' ? 'userMessage' : 'botMessage'}>
+              {/* Utilisation de ReactMarkdown pour afficher les messages formatés */}
+              <ReactMarkdown>{msg.text}</ReactMarkdown>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
 
-    {/* Formulaire d'envoi */}
-    <form onSubmit={handleSubmit} className="form">
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        className="input"
-        placeholder="Tapez votre message ici..."
-      />
-      <button type="submit" className="button">Envoyer</button>
-    </form>
-  </div>
-    </div >
+        {/* Formulaire d'envoi */}
+        <form onSubmit={handleSubmit} className="form">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="input"
+            placeholder="Tapez votre message ici..."
+          />
+          <button type="submit" className="button">Envoyer</button>
+        </form>
+      </div>
+    </div>
   );
 }
