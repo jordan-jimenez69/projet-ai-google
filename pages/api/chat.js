@@ -64,7 +64,8 @@ const model = genAI.getGenerativeModel({
       }
   
       const parts = [
-        { text: `instruction: Tu es un expert en randonnée. tu dois donner une rando avec les informations que tu aura. tout ce qui est en dehors de la randonné tu ne peux pas en parler` },
+        { text: `instruction: Réponds directement avec une suggestion de randonnée basée sur des informations générales. Si l'utilisateur ne fournit pas assez de détails, propose une randonnée classique et courante.` },
+        { text: `Voici une liste d'équipements de randonnée pour l'utilisateur : chaussures, bâtons de marche, sacs à dos.` },
         { text: `input: ${message}` },
       ];
   

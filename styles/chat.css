@@ -132,10 +132,10 @@ body {
 
 .head-histo button {
  width: 40%;
- background-color: #005bb5;
+ background-color: #0070f3;
 }
 
 .head-histo button:hover {
   width: 40%;
-  background-color: #000000;
+  background-color: #005bb5;
  }
