@@ -11,7 +11,7 @@ const model = genAI.getGenerativeModel({
 });
 
 const generationConfig = {
-  temperature: 0.15,
+  temperature: 0.7,
   topP: 0.95,
   topK: 64,
   responseMimeType: "text/plain",
@@ -39,11 +39,9 @@ export default async function handler(req, res) {
     conversation.messages.push({ text: message, sender: 'user', timestamp: new Date().toISOString() });
     fs.writeFileSync(filePath, JSON.stringify(json, null, 2));
 
-const instruction = "Je suis un chatbot conçu pour vous aider à vous orienter uniquement vers les équipements de randonnée disponibles sur notre site. Nous ne vendons que des équipements de randonnée et je vous conseille sur les meilleurs équipements disponibles.";
-
     const parts = [
-      { text: `instruction: ${instruction}` },
-      { text: `input: ${message}` }, 
+      { text: `instruction: Tu es un expert en randonnée. tu dois donner une rando avec les informations que tu aura. tout ce qui est en dehors de la randonné tu ne peux pas en parler` },
+      { text: `input: ${message}` },
     ];
 
     const result = await model.generateContent({
@@ -51,19 +49,18 @@ const instruction = "Je suis un chatbot conçu pour vous aider à vous orienter 
       generationConfig,
     });
 
-
-    const responseText = await result.response.text();
+    const reponseTexte = await result.response.text();
 
     conversation.messages.push({
-      text: responseText,
+      text: reponseTexte,
       sender: 'bot',
       timestamp: new Date().toISOString()
     });
 
     fs.writeFileSync(filePath, JSON.stringify(json, null, 2));
-    res.status(200).json({ reply: responseText });
+    res.status(200).json({ reply: reponseTexte });
 
-    console.log("Generated response:", responseText);
+    console.log("Generated response:", reponseTexte);
 
 
   } else if (req.method === 'GET') {

@@ -34,3 +34,4 @@ const result = await model.generateContent({
 });
 
 mais malheuresement ca comprend des defaults car on ne pourra pas donner de réponse claire comme le temps de livraison ect.
+
