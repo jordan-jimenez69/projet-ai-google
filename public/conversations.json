@@ -1,29 +1,3 @@
 {
-  "conversations": [
-    {
-      "id": 1726660981318,
-      "messages": [
-        {
-          "text": "une rando difficile dans le nord",
-          "sender": "user",
-          "timestamp": "2024-09-18T12:30:11.101Z"
-        },
-        {
-          "text": "Puisque vous recherchez une randonnée difficile dans le nord, je vous suggère le **sentier du Mont-Royal à Montréal**. C'est une randonnée classique avec des vues imprenables sur la ville et une montée assez ardue. \n\n\n\n**Voici quelques détails:**\n\n\n\n* **Difficulté:** Difficile (montée raide)\n\n* **Durée:** 1-2 heures (aller-retour)\n\n* **Distance:** 4 km environ\n\n* **Points forts:** Vues panoramiques sur Montréal, forêt urbaine, bel environnement.\n\n\n\nN'oubliez pas de porter des chaussures de randonnée robustes, des bâtons de marche peuvent être utiles pour la descente et un sac à dos pour transporter de l'eau et des collations. \n\n\n\n**Conseils:**\n\n\n\n* Commencez tôt le matin pour éviter la foule.\n\n* Apportez de l'eau et des collations.\n\n* Habillez-vous en fonction de la météo.\n\n* Soyez prudent sur les sentiers et restez sur les chemins balisés.\n\n\n\nJ'espère que vous apprécierez votre randonnée ! \n\n",
-          "sender": "bot",
-          "timestamp": "2024-09-18T12:30:13.659Z"
-        },
-        {
-          "text": "merci",
-          "sender": "user",
-          "timestamp": "2024-09-18T12:37:29.711Z"
-        },
-        {
-          "text": "Pas de problème! Pour une randonnée classique et accessible à tous, je te suggère le **sentier du Lac des Anges** dans les Alpes françaises.  Ce sentier offre des vues magnifiques sur le lac et les montagnes environnantes. \n\nTu pourras profiter de tes équipements de randonnée : \n* Tes **chaussures** seront idéales pour le terrain parfois accidenté.\n* Tes **bâtons de marche** te donneront un appui supplémentaire et soulageront tes articulations.\n* Ton **sac à dos** te permettra de transporter confortablement de l'eau, des snacks et des vêtements chauds.\n\nN'oublie pas de vérifier les conditions météorologiques avant de partir et de te munir d'une carte et d'une boussole pour te repérer. \n\nProfite de ta randonnée! \n",
-          "sender": "bot",
-          "timestamp": "2024-09-18T12:37:31.645Z"
-        }
-      ]
-    }
-  ]
+  "conversations": []
 }
